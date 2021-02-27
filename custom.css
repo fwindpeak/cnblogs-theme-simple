@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #under_post_card2,
 #under_post_card1,
 #top_nav,
@@ -6,22 +7,29 @@
 }
 
 :root {
-  --color-primary: #005a9b; /*重点文字颜色*/
-  --color-blog-title: #ddd; /*博客标题颜色*/
-  --color-nav-text: #ccc; /*导航栏文字颜色*/
-  --color-nav-background: #002d4f; /*导航栏背景色*/
-  --color-main-text: #1d2d4f; /*主界面文字颜色*/
-  --color-main-background: #eee; /*主界面背景色*/
+  --color-primary: #fc0;
+  /*重点文字颜色*/
+  --color-blog-title: #ddd;
+  /*博客标题颜色*/
+  --color-nav-text: #fc0;
+  /*导航栏文字颜色*/
+  --color-nav-background: #2b2b2b;
+  /*导航栏背景色*/
+  --color-main-text: #ddd;
+  /*主界面文字颜色*/
+  --color-main-background: #333;
+  /*主界面背景色*/
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1.2rem;
   line-height: 1.7em;
   color: var(--color-main-text);
+  background: var(--color-main-background);
   margin: 0;
-  padding-left: 400px;
 }
+
 a {
   text-decoration: none;
 }
@@ -31,55 +39,90 @@ a {
   display: flex;
 }
 
-/* 左侧导航 */
-#home #header {
+#home {
   display: flex;
   flex-direction: column;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 100vh;
+  /* 头部导航 */
+}
+#home #header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
   text-align: center;
-  box-shadow: 0 0 12px 2px rgb(0 0 0 / 40%);
+  box-shadow: 0 0 12px 2px rgba(0, 0, 0, 0.4);
   background-color: var(--color-nav-background);
   color: var(--color-nav-text);
+  padding: 0 20px;
 }
-#blogTitle a {
+#home #header > * {
+  margin: auto;
+}
+#home #blogTitle {
+  display: flex;
+  align-items: center;
+}
+#home #blogTitle a {
   display: block;
   color: var(--color-blog-title);
   text-decoration: none;
   background-color: transparent;
 }
-
-#home #header #navigator #navList {
+#home #navigator {
+  /* 页面统计 */
+}
+#home #navigator #navList {
   display: flex;
   margin: 0 auto auto;
-  flex-direction: column;
+  flex-direction: row;
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
 }
-
-#home #header #navigator #navList a {
-  display: block;
-  padding: 0.5rem 1rem;
+#home #navigator #navList li a {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  font-weight: 900;
+  font-size: 1em;
+  padding: 0.2em 1em;
+  margin: 0 0.2em;
+  text-shadow: none;
+  text-transform: uppercase;
+  -webkit-transition: all 0.25s;
+  -moz-transition: all 0.25s;
+  -o-transition: all 0.25s;
+  transition: all 0.25s;
   text-decoration: none;
   background-color: transparent;
   color: var(--color-nav-text);
 }
-
-#home #header #navigator #navList a:hover {
-  color: #fff;
+#home #navigator #navList li a#blog_nav_myhome {
+  background-color: #fc0;
+  color: #222;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 5px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
 }
-
-#home #header .blogStats {
-  font-size: 0.8em;
+#home #navigator #navList li a:hover {
+  background-color: #252525;
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.1);
+  -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5), 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+#home #navigator .blogStats span {
+  font-size: 0.5em;
+  color: var(--color-main-text);
 }
 
 /* 右侧正文 */
 #home {
   width: 100%;
+  /* 页脚 */
+  /* 语法高亮 */
 }
 #home #main {
   padding-right: 15px;
@@ -88,31 +131,94 @@ a {
   margin-left: auto;
   max-width: 800px;
 }
-#main #mainContent .day {
-  border-bottom: 1px solid #dadee2;
-  padding: 1em 0;
-  box-shadow: 0 0 12px 2px rgb(0 0 0 / 40%);
+#home #main a {
+  color: var(--color-primary);
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-text-decoration-skip: objects;
 }
-
-#main #mainContent .dayTitle {
-  text-align: center;
+#home #main #mainContent {
+  /* 博文标题 */
+  /* 博文统计 */
+  /* 翻页 */
 }
-#main #mainContent .dayTitle a {
-  color: var(--color-main-text);
+#home #main #mainContent .day {
+  background-color: #444;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+  padding: 20px;
+  margin: 10px;
 }
-
-.post h1 {
+#home #main #mainContent .day .postSeparator {
+  border-top: 1px solid #555;
+  border-radius: 0;
+  -webkit-box-shadow: 0 -1px 0 #2f2f2f;
+  -moz-box-shadow: 0 -1px 0 #2f2f2f;
+  box-shadow: 0 -1px 0 #2f2f2f;
+}
+#home #main #mainContent .dayTitle {
+  margin-right: 20px;
+  padding-left: 0;
+  width: 160px;
+  text-align: right;
+  box-sizing: border-box;
+  display: inline-block;
+  margin-left: -30px;
+  padding: 6px 10px 8px;
+  padding-left: 50px;
+  -webkit-border-radius: 0 5px 5px 0;
+  -moz-border-radius: 0 5px 5px 0;
+  border-radius: 0 5px 5px 0;
+  position: relative;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  background-color: #9e2812;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzllMjgxMiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM2ZjBkMGQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#9e2812), to(#6f0d0d));
+  background-image: -webkit-linear-gradient(top, #9e2812 0%, #6f0d0d 100%);
+  background-image: -moz-linear-gradient(top, #9e2812 0%, #6f0d0d 100%);
+  background-image: -o-linear-gradient(top, #9e2812 0%, #6f0d0d 100%);
+  background-image: linear-gradient(to bottom, #9e2812 0%, #6f0d0d 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#9e2812", endColorstr="#6f0d0d",GradientType=0 );
+}
+#home #main #mainContent .dayTitle:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 0;
+  border-color: transparent #6f0d0d #6f0d0d transparent;
+  border-style: solid;
+  border-width: 5px;
+  width: 0;
+  height: 0;
+}
+#home #main #mainContent .dayTitle a {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 0.8em;
+}
+#home #main #mainContent .post h1 {
   padding: 1rem 0;
   font-size: 1.2rem;
 }
-
-#main #mainContent .postTitle {
+#home #main #mainContent #cnblogs_post_body h2,
+#home #main #mainContent #cnblogs_post_body h3 {
+  border-left: 3px solid var(--color-primary);
+  padding-left: 10px;
+  line-height: 1.2rem;
+}
+#home #main #mainContent .postTitle {
   text-align: center;
   margin: 1rem;
   line-height: 1.2rem;
 }
-
-#main #mainContent .postTitle a {
+#home #main #mainContent .postTitle a {
   line-height: 1.3em;
   font-size: 1.2em;
   font-weight: 700;
@@ -120,21 +226,38 @@ a {
   text-decoration: none;
   background-color: transparent;
 }
-
-#main #mainContent .postDesc {
+#home #main #mainContent .postDesc {
   text-align: right;
   font-size: 0.6rem;
 }
-#main a {
-  color: var(--color-primary);
-  text-decoration: none;
-  background-color: transparent;
-  -webkit-text-decoration-skip: objects;
+#home #main #mainContent .topicListFooter {
+  text-align: right;
 }
-
-/* 页脚 */
 #home #footer {
-  display: none;
+  color: #555;
+  text-align: center;
+  font-size: 0.5em;
+  padding: 10px auto;
+  line-height: 2em;
+  border-top: 1px solid #555;
+  border-radius: 0;
+  -webkit-box-shadow: 0 -1px 0 #2f2f2f;
+  -moz-box-shadow: 0 -1px 0 #2f2f2f;
+  box-shadow: 0 -1px 0 #2f2f2f;
+}
+#home #cnblogs_post_body code {
+  background-color: #fff !important;
+  color: #272727 !important;
+  border: none !important;
+  max-width: 100%;
+  overflow-x: auto;
+  vertical-align: middle;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1), 0 -1px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1), 0 -1px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.3), 0 1px 0 rgba(255, 255, 255, 0.1), 0 -1px 0 rgba(0, 0, 0, 0.5);
 }
 
 @media screen and (max-width: 768px) {
@@ -142,52 +265,37 @@ a {
     margin: 0;
     padding: 0;
   }
+
   #home {
     display: flex;
     flex-flow: column;
   }
   #home #header {
+    margin: 0;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     position: relative;
-    align-items: center;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 4rem;
-    text-align: left;
-    box-shadow: 0 0 12px 2px rgb(0 0 0 / 40%);
-    background-color: var(--color-nav-background);
-    color: var(--color-nav-text);
-    justify-content: space-between;
+    height: auto;
   }
   #home #header #blogTitle {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  #home #header #navigator {
     display: flex;
-    padding: 10px;
+    text-align: center;
+    flex-direction: column;
   }
-  #home #header #navigator #navList {
-    flex-direction: row;
-    text-align: right;
-    justify-content: right;
+  #home #header #navigator .blogStats {
+    font-size: small;
   }
-  #home #header #navigator #navList a {
-    display: flex;
-
-    align-items: center;
-    font-size: 1.2rem;
-    padding: 1rem 0.5rem;
-    font-weight: 700;
-  }
-  #home #header .blogStats {
-    text-align: right;
-    padding-right: 1rem;
-    display: none;
-  }
-  #home #header ul {
+  #home ul {
     display: flex;
     flex-direction: column;
   }
-  #home #main {
-    margin: 0;
-  }
 }
+
+/*# sourceMappingURL=l.css.map */
+
