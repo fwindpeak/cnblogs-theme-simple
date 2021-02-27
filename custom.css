@@ -167,9 +167,8 @@ a {
   }
   #home #header #navigator #navList {
     flex-direction: row;
-    /* text-align: right; */
-    /* justify-content: right; */
-    align-items: ri;
+    text-align: right;
+    justify-content: right;
   }
   #home #header #navigator #navList a {
     display: flex;
@@ -190,6 +189,5 @@ a {
   }
   #home #main {
     margin: 0;
-    /* padding: 0 15px; */
   }
 }
