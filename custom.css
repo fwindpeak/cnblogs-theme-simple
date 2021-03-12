@@ -91,7 +91,6 @@ a {
 #main #mainContent .day {
   border-bottom: 1px solid #dadee2;
   padding: 1em 0;
-  box-shadow: 0 0 12px 2px rgb(0 0 0 / 40%);
 }
 
 #main #mainContent .dayTitle {
