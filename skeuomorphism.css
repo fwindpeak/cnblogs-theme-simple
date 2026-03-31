@@ -1,9 +1,8 @@
 /* ==================================================
-   Fwindpeak 经典 Apple 拟物风 (Skeuomorphism) - 移动端适配版
+   Fwindpeak 经典 Apple 拟物风 - 居中完美版
    ================================================== */
 
 :root {
-    /* 亮色拟物：银色金属面板 + 亚麻背景 + 白卡片 */
     --bg-body: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><rect width="4" height="4" fill="%23e0e3e6"/><path d="M0 0L4 4ZM4 0L0 4Z" stroke="%23d0d3d6" stroke-width="1"/></svg>');
     --panel-bg: linear-gradient(180deg, #f5f6f8 0%, #d8dadd 100%);
     --panel-border: #a1a5ab;
@@ -26,7 +25,6 @@
 }
 
 body[data-theme="dark"] {
-    /* 暗色拟物：深黑金拉丝 + 暗纹理 + 磨砂卡片 */
     --bg-body: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><rect width="4" height="4" fill="%231a1a1a"/><path d="M0 0L4 4ZM4 0L0 4Z" stroke="%23222222" stroke-width="1"/></svg>');
     --panel-bg: linear-gradient(180deg, #3a3c3e 0%, #1c1d1f 100%);
     --panel-border: #0a0a0a;
@@ -48,14 +46,16 @@ body[data-theme="dark"] {
     --input-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* ================== 基础重置 ================== */
+/* ================== 基础重置与大屏居中布局 ================== */
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: var(--bg-body);
     color: var(--text-main);
     margin: 0;
-    padding: 0;
+    padding: 0 0 0 280px;
+    /* 全局左侧留出 280px 空间给侧边栏 */
     transition: background 0.5s ease, color 0.5s ease;
+    box-sizing: border-box;
 }
 
 a {
@@ -63,16 +63,13 @@ a {
     text-decoration: none;
 }
 
+/* 彻底隐藏博客园自带的多余元素 */
 #top_nav,
 #sideBarMain,
-.clear {
+#blog_stats_place_holder,
+.clear,
+.postSeparator {
     display: none !important;
-}
-
-/* 废弃 flex 布局，使用 margin-left 推开空间 */
-#home {
-    display: block;
-    width: 100%;
 }
 
 /* ================== 左侧拟物金属面板 ================== */
@@ -88,17 +85,10 @@ a {
     z-index: 100;
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
-    /* 内容过多时可滚动 */
-}
-
-/* 隐藏自带的滚动条让面板更干净 */
-#header::-webkit-scrollbar {
-    width: 0;
 }
 
 #blogTitle {
-    padding: 40px 20px 20px;
+    padding: 50px 20px 10px;
     text-align: center;
 }
 
@@ -115,51 +105,12 @@ a {
     margin-top: 10px;
 }
 
-/* 导航实体按键 */
-#navList {
-    list-style: none;
-    padding: 0 15px;
-    margin: 0;
-}
-
-#navList a {
-    display: block;
-    padding: 10px 15px;
-    margin-bottom: 10px;
-    background: var(--btn-bg);
-    border: 1px solid var(--btn-border);
-    border-radius: 8px;
-    box-shadow: var(--btn-shadow);
-    text-shadow: var(--text-shadow);
-    font-weight: bold;
-    text-align: center;
-    transition: none;
-    /* 拟物风不需要现代的平滑过渡，需要干脆的按下感 */
-}
-
-#navList a:active {
-    background: transparent;
-    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
-    text-shadow: none;
-}
-
-/* 左侧边栏数据统计 */
-.blogStats {
-    text-align: center;
-    font-size: 12px;
-    color: var(--text-muted);
-    text-shadow: var(--text-shadow);
-    margin-top: 10px;
-    padding: 0 15px;
-}
-
 /* ================== 搜索框（内凹设计） ================== */
 #sidebar_search {
-    margin-top: auto;
-    /* 推到底部 */
-    padding: 20px 15px 30px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    padding: 10px 20px 20px;
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .catListTitle {
@@ -168,8 +119,6 @@ a {
 
 #sidebar_search_box {
     display: flex;
-    gap: 8px;
-    align-items: center;
     justify-content: center;
 }
 
@@ -185,7 +134,7 @@ a {
     border: 1px solid var(--panel-border);
     box-shadow: var(--input-shadow);
     border-radius: 15px;
-    padding: 6px 12px;
+    padding: 8px 12px;
     color: var(--text-main);
     outline: none;
     width: 100%;
@@ -209,12 +158,53 @@ a {
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
-/* ================== 右侧正文：纸质卡片 ================== */
+/* ================== 统计信息与管理按钮 (沉底) ================== */
+.blogStats {
+    margin-top: auto;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-shadow: var(--text-shadow);
+    padding: 0 15px;
+}
+
+#navList {
+    list-style: none;
+    padding: 10px 0 20px 0;
+    margin: 0;
+    text-align: center;
+}
+
+#navList a#blog_nav_admin {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    text-shadow: var(--text-shadow);
+    font-size: 12px;
+    color: var(--text-muted);
+    opacity: 0.5;
+    padding: 5px;
+    font-weight: normal;
+}
+
+#navList a#blog_nav_admin:hover {
+    opacity: 1;
+    text-decoration: underline;
+}
+
+/* ================== 右侧正文：纸质卡片 (完美居中) ================== */
+#home,
 #main {
-    margin-left: 280px;
-    /* 推开左侧固定栏的距离 */
-    padding: 40px;
+    width: 100%;
+    display: block;
+}
+
+#mainContent {
+    width: 100%;
     max-width: 850px;
+    margin: 0 auto;
+    /* 在右侧剩余区域完美居中 */
+    padding: 40px 20px;
     box-sizing: border-box;
 }
 
@@ -228,7 +218,6 @@ a {
     position: relative;
 }
 
-/* 顶部纸张高光边缘 */
 .day::before {
     content: '';
     position: absolute;
@@ -275,24 +264,29 @@ a {
     border-top: 1px dashed rgba(150, 150, 150, 0.4);
 }
 
-/* ================== Footer (彻底沉底) ================== */
+/* 分页按钮居中 */
+.topicListFooter {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* ================== Footer ================== */
 #footer {
-    margin-left: 280px;
-    /* 和 #main 保持对齐 */
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto 40px;
+    /* 在右侧空间居中 */
     padding: 20px;
     text-align: center;
     background: var(--panel-bg);
-    border-top: 1px solid var(--panel-border);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    /* 给 footer 加一点圆角 */
+    box-shadow: var(--card-shadow);
     color: var(--text-main);
     text-shadow: var(--text-shadow);
     font-size: 13px;
-    clear: both;
-    /* 确保不被浮动元素影响 */
-}
-
-#footer a {
-    font-weight: bold;
+    box-sizing: border-box;
 }
 
 /* ================== 悬浮玻璃切换按钮 ================== */
@@ -354,53 +348,34 @@ body[data-theme="dark"] .icon-sun {
 
 /* ================== 移动端完美适配 ================== */
 @media screen and (max-width: 768px) {
+    body {
+        padding-left: 0;
+        /* 手机端取消左侧保留空间 */
+    }
+
     #header {
         position: relative;
-        /* 取消固定，随页面滚动 */
+        /* 取消固定定位，跟随页面滚动 */
         width: 100%;
         height: auto;
         border-right: none;
         border-bottom: 1px solid var(--panel-border);
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        /* 底部加上阴影，压在内容上 */
     }
 
-    #main {
-        margin-left: 0;
-        /* 取消左边距 */
+    #mainContent {
         padding: 20px 15px;
-        max-width: 100%;
     }
 
     #footer {
-        margin-left: 0;
-        /* 取消左边距 */
-    }
-
-    /* 移动端导航栏横向排列 */
-    #navList {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-        padding-bottom: 10px;
-    }
-
-    #navList li {
-        flex: 1 1 30%;
-        /* 按钮平分宽度 */
-        min-width: 80px;
-    }
-
-    #navList a {
-        margin-bottom: 0;
+        max-width: calc(100% - 30px);
+        margin: 0 auto 20px;
     }
 
     .day {
         padding: 20px;
     }
 
-    /* 移动端悬浮按钮改小一点，避免遮挡内容 */
     #sk-theme-btn {
         bottom: 20px;
         right: 20px;
