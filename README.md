@@ -5,6 +5,10 @@ cnblogs-theme-simple
 
 [这里可以看例子](https://www.cnblogs.com/fwindpeak/)
 
+## update
+
+- 2026-04-01 增加亮暗色拟物主题 [skeuomorphism](https://github.com/fwindpeak/cnblogs-theme-simple/blob/main/Skeuomorphism.css)
+
 ## 使用
 
 - 在`设置`中随便选一个`博客皮肤`,比如`custom`
